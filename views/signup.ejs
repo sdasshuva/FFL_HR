@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HR & Payroll System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style>
+    .form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+  </style>
+<!-- <script type="text/javascript">
+function crossDomainPost() {
+  // Add the iframe with a unique name
+  // var iframe = document.createElement("iframe");
+  var uniqueString = "CHANGE_THIS_TO_SOME_UNIQUE_STRING";
+  // document.body.appendChild(iframe);
+  // iframe.style.display = "none";
+  // iframe.contentWindow.name = uniqueString;
+
+  // construct a form with hidden inputs, targeting the iframe
+  var form = document.createElement("form");
+  form.target = uniqueString;
+  form.action = "http://192.168.20.201/form/Download";
+  form.method = "POST";
+
+  // repeat for each parameter
+  var input1 = document.createElement("input");
+  input1.type = "hidden";
+  input1.name = "sdate";
+  input1.value = "2017-03-01";
+  form.appendChild(input1);
+  var input2 = document.createElement("input");
+  input2.type = "hidden";
+  input2.name = "edate";
+  input2.value = "2017-03-13";
+  form.appendChild(input2);
+  var input3 = document.createElement("input");
+  input3.type = "hidden";
+  input3.name = "period";
+  input3.value = "0";
+  form.appendChild(input3);
+  var input4 = document.createElement("input");
+  input4.type = "submit";
+  input4.name = "submit";
+  input4.value = "Download";
+  form.appendChild(input4);
+
+  // document.body.appendChild(form);
+  form.submit();
+}
+</script> -->
+</head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="account-wall">
+                        <img class="profile-img" src="uploads/images/logo.png"
+                            alt="">
+                            <h1 class="text-center login-title">SIGN UP</h1>
+                        <form class="form-signin" action="/signup" method="post">
+                            <input type="email" name='email' class="form-control" placeholder="Email" required autofocus>
+                            <input type="password" name='password' class="form-control" placeholder="Password" required>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                Sign Up</button>
+                        </form>
+                    </div>
+                    <a href="/signin" class="text-center new-account">Sign In</a>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

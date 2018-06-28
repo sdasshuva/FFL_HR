@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Practice</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        canvas
+        {
+            background: #777;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="300" height="300"></canvas>
+<center>This text will be center-aligned.</center>
+
+
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var canvasSize = 400;
+    canvas.width = canvasSize;
+    canvas.height = canvasSize;
+    var ctx = canvas.getContext("2d");
+    var canVLeftOff = canvas.offsetLeft;
+    var canVTopOff = canvas.offsetTop;
+    var ballRadius = 10;
+    var boxRowCount = 3;
+    var boxPadding = 5;
+    var boxOffset = 10;
+    var boxSize = (canvasSize-boxOffset-(boxRowCount*boxPadding*1.2))/boxRowCount;
+    var yourTurn = true;
+
+    var boxes = [];
+    for(c=0; c<boxRowCount; c++) {
+        boxes[c] = [];
+        for(r=0; r<boxRowCount; r++) {
+            boxes[c][r] = { x: 0, y: 0, status: 1, clicked: false, blocked: false, player: 0 };
+        }
+    }
+
+    canvas.addEventListener("click", mouseClickHandler, false);
+
+    function mouseClickHandler(e) {
+        for(c=0; c<boxRowCount; c++) {
+            for(r=0; r<boxRowCount; r++) {
+                if(boxes[c][r].status == 1) {
+                    var boxXMin = boxes[c][r].x+canVLeftOff;
+                    var boxXMax = boxXMin+boxSize;
+                    var boxYMin = boxes[c][r].y+canVTopOff;
+                    var boxYMax = boxYMin+boxSize;
+                    if(e.x>=boxXMin&&e.x<=boxXMax&&e.y>=boxYMin&&e.y<=boxYMax){
+                        boxes[c][r].clicked = true;
+                    }
+                }
+            }
+        }
+    }
+
+    function drawCross(x,y){
+        ctx.lineWidth=boxSize/10;
+        ctx.beginPath();
+        ctx.moveTo(x+(boxSize/10),y+(boxSize/10));
+        ctx.lineTo(x+boxSize-(boxSize/10),y+boxSize-(boxSize/10));
+        ctx.moveTo(x+boxSize-(boxSize/10),y+(boxSize/10));
+        ctx.lineTo(x+(boxSize/10),y+boxSize-(boxSize/10));
+        ctx.closePath();
+        ctx.strokeStyle = '#ff0000';
+        ctx.stroke();
+    }
+
+    function drawGolla(x,y){
+        ctx.lineWidth=boxSize/10;
+        ctx.beginPath();
+        ctx.arc(x+(boxSize/2),y+(boxSize/2),(boxSize/2)-(boxSize/10),0,2*Math.PI);
+        ctx.closePath();
+        ctx.strokeStyle = '#00ff00';
+        ctx.stroke();
+    }
+
+    function drawBox() {
+        var boxC = 0;
+        for(c=0; c<boxRowCount; c++) {
+            for(r=0; r<boxRowCount; r++) {
+                if(boxes[c][r].status == 1) {
+                    boxC++;
+                    var boxX = (r*(boxSize+boxPadding))+boxOffset;
+                    var boxY = (c*(boxSize+boxPadding))+boxOffset;
+                    boxes[c][r].x = boxX;
+                    boxes[c][r].y = boxY;
+                    boxes[c][r].c = 'BOX '+boxC;
+
+                    ctx.lineWidth=1;
+                    ctx.beginPath();
+                    ctx.rect(boxX, boxY, boxSize, boxSize);
+                    ctx.fillStyle = "#FFF";
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.strokeStyle = '#000000';
+                    ctx.stroke();
+
+                    if(!yourTurn&&!boxes[c][r].blocked){
+                        drawCross(boxes[c][r].x,boxes[c][r].y);
+                        yourTurn = true;
+                        boxes[c][r].blocked=true;
+                        boxes[c][r].player = 2;
+                    }
+
+                    if(boxes[c][r].clicked&&!boxes[c][r].blocked){
+                        drawGolla(boxes[c][r].x,boxes[c][r].y);
+                        boxes[c][r].player = 1;
+                        boxes[c][r].blocked=true;
+                        yourTurn = false;
+                    }
+
+                    if(boxes[c][r].blocked){
+                        if(boxes[c][r].player == 1){
+                            drawGolla(boxes[c][r].x,boxes[c][r].y);
+                        }
+                        if(boxes[c][r].player == 2){
+                            drawCross(boxes[c][r].x,boxes[c][r].y);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBox();
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+</script>
+
+</body>
+</html>

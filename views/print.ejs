@@ -1,0 +1,98 @@
+<style type="text/css">
+        .print_box {
+                width: 800px;
+                margin: 10px auto;
+                border: 1px solid #ddd;
+                padding: 30px 0px;
+        }
+
+        .print_box table {
+                padding: 10px;
+                font-size: 14px !important
+        }
+
+        .print_box .fst_table {
+                margin-bottom: 20px
+        }
+
+        .print_box .snd_table {
+                margin-bottom: 50px
+        }
+
+        .print_box .thd_table {
+                margin-bottom: 100px;
+        }
+
+        .print_box .fth_table {
+                margin-bottom: 30px
+        }
+
+        .print_box h2, h3, h4, h5, h6, p {
+                margin: 0;
+                padding: 0
+        }
+
+        .printer_header {
+                text-align: center
+        }
+
+        .printer_header h2 {
+                font-size: 20px;
+        }
+
+        .printer_header p {
+                font-size: 14px
+        }
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+</style>
+<div class="print_box">
+
+        <table class="fst_table" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                        <td width="15%" rowspan="2"><img src="../../uploads/images/imgpsh_fullsize.jpg" alt=""/></td>
+                        <td width="3%" rowspan="2">&nbsp;</td>
+                        <td width="53%" rowspan="2">
+                                <div class="printer_header">
+                                        <h2>Tile Stock Management System</h2>
+
+                                        <p>Address</p>
+
+                                        <p>Details</p>
+                                </div>
+                        </td>
+                        <td colspan="2">
+                                <h3 class="text-center">Buyer Name:</h3>
+                                <h3 class="text-center">Invoice:</h3>
+                        </td>
+                        <td>
+                                <h3 class="text-center"><small><%- buyer %></small></h3>
+                                <h3 class="text-center"><small><%- invoice %></small></h3>
+                        </td>
+                </tr>
+
+                <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                </tr>
+        </table>
+        <table width="100%" border = '10'>
+                <tr>
+                        <td>CODE</td>
+                        <td>DESCRIPTION</td>
+                        <td>UNIT PRICE</td>
+                        <td>QUANTITY</td>
+                        <td>TOTAL</td>
+                </tr>
+                <% for(var i=0; i<sale.length; i++) {%>
+                <tr>
+                        <td> <%= sale[i].tileTable.code %></td>
+                        <td> <%= sale[i].tileTable.description %></td>
+                        <td> <%= sale[i].unit_price %></td>
+                        <td> <%= sale[i].quantity %></td>
+                        <td> <%= sale[i].unit_price * sale[i].quantity %></td>
+                </tr>
+                <% } %>
+        </table>
+</div>
